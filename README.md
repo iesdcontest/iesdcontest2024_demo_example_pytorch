@@ -1,4 +1,4 @@
-# Python example code for the ACM/IEEE Intelligent Embedded System Design Contest at ICMC 2024
+# Python example code for the IEEE Intelligent Embedded System Design Contest at ICMC 2024
 
 ## What's in this repository?
 
