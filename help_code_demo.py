@@ -168,7 +168,7 @@ class ECG_DataSET():
         for i, (k, v) in enumerate(csvdata_all.items()):
             # Check if the subject ID matches
             if subject_id is not None and k.startswith(subject_id):
-                self.names_list.extend([f"{k} {filename}" for filename in v])
+                self.names_list.extend([f"{k} {label}" for label in v])
             elif subject_id is None:
                 self.names_list.append(str(k) + ' ' + str(v[0]))
 

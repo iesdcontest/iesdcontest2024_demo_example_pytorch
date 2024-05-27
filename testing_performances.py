@@ -38,6 +38,7 @@ def main():
     device = torch.device('cuda:0')
     subjects_above_threshold = 0
 
+    test_counter = 0
     for subject_id in subjects:
         testset = ECG_DataSET(root_dir=path_data,
                                indice_dir=path_indices,
@@ -71,6 +72,9 @@ def main():
                 segs_FN += (labels_test.size(0) - (predicted_test == labels_test).sum()).item()
                 segs_TP += (predicted_test == labels_test).sum().item()
 
+            test_counter += 1
+            print(outputs_test, test_counter)
+
         # Calculate metrics for the current participant
         f1 = round(F1([segs_TP, segs_FN, segs_FP, segs_TN]), 5)
         fb = round(FB([segs_TP, segs_FN, segs_FP, segs_TN]), 5)
@@ -87,7 +91,7 @@ def main():
 
         # Append metrics to the subject_metrics list
         subject_metrics.append([f1, fb, se, sp, bac, acc, ppv, npv])
-        if fb > 0.95:
+        if fb > 0.9:
             subjects_above_threshold += 1
 
     # Convert the list of lists to a NumPy array for easier calculations
